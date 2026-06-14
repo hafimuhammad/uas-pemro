@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fame BBQ</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --merah: #C0392B;
+      --gelap: #222222;
+      --abu:   #666666;
+    }
+
+    body { background: #ffffff; color: var(--gelap); font-family: Arial, sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    /* NAVBAR */
+    .navbar { background: #ffffff !important; border-bottom: 2px solid var(--merah); }
+    .navbar-brand { font-weight: bold; font-size: 1.4rem; color: var(--merah) !important; }
+    .nav-link { color: var(--gelap) !important; }
+    .nav-link:hover { color: var(--merah) !important; }
+    .btn-merah { background: var(--merah); color: #fff; border: none; padding: 8px 20px; font-weight: bold; }
+    .btn-merah:hover { background: #a93226; color: #fff; }
+
+    /* HERO */
+    #hero { background: #f9f9f9; border-bottom: 1px solid #eee; padding: 80px 0; }
+    #hero h1 { font-size: 2.8rem; font-weight: bold; }
+    #hero h1 span { color: var(--merah); }
+    #hero p { color: var(--abu); max-width: 480px; line-height: 1.8; }
+    .btn-outline-merah { border: 2px solid var(--merah); color: var(--merah); background: transparent; padding: 8px 20px; font-weight: bold; }
+    .btn-outline-merah:hover { background: var(--merah); color: #fff; }
+    .stat-num { font-size: 1.8rem; font-weight: bold; color: var(--merah); }
+    .stat-label { font-size: 0.75rem; color: var(--abu); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* SECTION */
+    section { padding: 70px 0; }
+    .section-tag { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--merah); font-weight: bold; }
+    .section-title { font-size: 2rem; font-weight: bold; }
+    .garis { width: 40px; height: 3px; background: var(--merah); margin: 12px 0 20px; }
+    .garis.mx-auto { margin-left: auto; margin-right: auto; }
+
+    /* ABOUT */
+    #about { background: #f5f5f5; }
+    .about-box { background: #fff; border: 1px solid #ddd; padding: 40px; text-align: center; font-size: 6rem; }
+    .about-badge { background: var(--merah); color: #fff; padding: 12px 20px; font-weight: bold; font-size: 1.3rem; display: inline-block; margin-top: -20px; }
+    .fitur { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+    .fitur-icon { color: var(--merah); font-size: 1.3rem; margin-top: 2px; flex-shrink: 0; }
+    .fitur h6 { font-weight: bold; margin-bottom: 4px; }
+    .fitur p { color: var(--abu); font-size: 0.85rem; margin: 0; }
+
+    /* MENU */
+    #menu { background: #fff; }
+    .kartu { background: #f9f9f9; border: 1px solid #e0e0e0; transition: transform .25s, box-shadow .25s; }
+    .kartu:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .kartu-img { background: #efefef; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; }
+    .kartu-badge { position: absolute; top: 10px; right: 10px; background: var(--merah); color: #fff; font-size: 0.65rem; font-weight: bold; padding: 3px 8px; }
+    .kartu-body { padding: 16px; }
+    .kartu-title { font-weight: bold; margin-bottom: 6px; }
+    .kartu-desc { color: var(--abu); font-size: 0.82rem; line-height: 1.6; margin-bottom: 10px; }
+    .kartu-harga { color: var(--merah); font-weight: bold; font-size: 1.1rem; }
+    .tab-btn { background: transparent; border: 1px solid #ccc; color: var(--abu); padding: 8px 20px; font-size: 0.82rem; font-weight: bold; cursor: pointer; transition: all .2s; }
+    .tab-btn:hover, .tab-btn.active { background: var(--merah); color: #fff; border-color: var(--merah); }
+
+    /* TESTIMONI */
+    #testimoni { background: #f5f5f5; }
+    .testi { background: #fff; border-left: 3px solid var(--merah); padding: 24px; height: 100%; }
+    .testi-stars { color: var(--merah); margin-bottom: 10px; }
+    .testi-text { color: var(--abu); font-size: 0.88rem; font-style: italic; line-height: 1.8; margin-bottom: 16px; }
+    .testi-nama { font-weight: bold; font-size: 0.9rem; }
+    .testi-role { color: var(--abu); font-size: 0.75rem; }
+
+    /* KONTAK */
+    #kontak { background: #fff; }
+    .kontak-icon { width: 44px; height: 44px; border: 1px solid var(--merah); display: flex; align-items: center; justify-content: center; color: var(--merah); font-size: 1.1rem; flex-shrink: 0; }
+    .kontak-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+    .kontak-item h6 { font-weight: bold; margin-bottom: 2px; }
+    .kontak-item p { color: var(--abu); font-size: 0.85rem; margin: 0; }
+    .form-control, .form-select { border-radius: 0 !important; font-size: 0.88rem !important; }
+    .form-control:focus, .form-select:focus { border-color: var(--merah) !important; box-shadow: none !important; }
+    .form-label { font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: var(--abu); }
+    #notifSukses { display: none; background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; padding: 12px 16px; font-size: 0.88rem; margin-top: 12px; }
+
+    /* FOOTER */
+    footer { background: #f5f5f5; border-top: 2px solid var(--merah); padding: 40px 0 20px; }
+    .footer-brand { font-weight: bold; font-size: 1.4rem; color: var(--merah); }
+    .footer-link { color: var(--abu); text-decoration: none; font-size: 0.85rem; display: block; margin-bottom: 8px; }
+    .footer-link:hover { color: var(--merah); }
+    .footer-heading { font-size: 0.7rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--merah); margin-bottom: 12px; }
+    .sosial { width: 36px; height: 36px; border: 1px solid #ccc; display: inline-flex; align-items: center; justify-content: center; color: var(--abu); text-decoration: none; margin-right: 6px; transition: all .2s; }
+    .sosial:hover { border-color: var(--merah); color: var(--merah); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#hero">
+      <img src="logo.jpeg" height="40" class="me-2" alt="logo">FameBBQ
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimoni">Testimoni</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="btn btn-merah" href="#kontak">Hubungi Kami</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <p class="section-tag mb-3">— Authentic Grilled Experience</p>
+        <h1>Rasa yang <span>Tak Terlupakan</span></h1>
+        <p class="my-3">Fame BBQ menghadirkan pengalaman BBQ delivery terlengkap langsung ke rumahmu. Paket siap masak dengan daging segar, bumbu tare khas — tinggal nyalakan, langsung bakar!</p>
+        <div class="d-flex gap-3 flex-wrap mb-4">
+          <a href="#menu" class="btn btn-merah">Lihat Menu</a>
+          <a href="#kontak" class="btn btn-outline-merah">Pesan Sekarang</a>
+        </div>
+        <div class="d-flex gap-4 pt-3" style="border-top: 1px solid #ddd;">
+          <div>
+            <div class="stat-num">2020</div>
+            <div class="stat-label">Berdiri Sejak</div>
+          </div>
+          <div>
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Varian Paket</div>
+          </div>
+          <div>
+            <div class="stat-num">08.00–21.00</div>
+            <div class="stat-label">Buka Setiap Hari</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 text-center">
+        <div class="about-box"></div>
+        <div class="about-badge">Est. 2020</div>
+      </div>
+      <div class="col-lg-7">
+        <p class="section-tag">Tentang Kami</p>
+        <h2 class="section-title mt-1">Warisan Rasa,<br/>Kualitas Tanpa Kompromi</h2>
+        <div class="garis"></div>
+        <p style="color:var(--abu); line-height:1.9; margin-bottom:24px;">
+          Fame BBQ hadir sejak 2020 dengan konsep BBQ delivery yang memudahkan kamu menikmati pengalaman bakar-bakaran di rumah sendiri. Paket lengkap siap masak, bumbu tare khas, dan bahan pilihan berkualitas.
+        </p>
+        <div class="fitur">
+          <i class="bi bi-box-seam fitur-icon"></i>
+          <div>
+            <h6>Paket Lengkap Siap Masak</h6>
+            <p>Setiap paket sudah dilengkapi daging segar, bumbu tare, sayuran, condiment, hingga peralatan makan.</p>
+          </div>
+        </div>
+        <div class="fitur">
+          <i class="bi bi-award fitur-icon"></i>
+          <div>
+            <h6>Daging Segar Berkualitas</h6>
+            <p>Beef belly dan sirloin pilihan yang dipotong segar setiap hari untuk tekstur dan cita rasa terbaik.</p>
+          </div>
+        </div>
+        <div class="fitur">
+          <i class="bi bi-truck fitur-icon"></i>
+          <div>
+            <h6>Layanan Delivery Cepat</h6>
+            <p>Order mudah, diantar langsung ke depan pintu. Buka setiap hari pukul 08.00–21.00 WITA.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="menu">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="section-tag">Menu Delivery</p>
+      <h2 class="section-title mt-1">Paket Pilihan Kami</h2>
+      <div class="garis mx-auto"></div>
+      <p style="color:var(--abu); font-size:0.9rem;">Setiap paket sudah lengkap dengan daging segar, bumbu tare, sayuran, condiment, dan peralatan makan.</p>
+    </div>
+
+ 
+    <div class="text-center mb-4 d-flex gap-2 justify-content-center flex-wrap">
+      <button class="tab-btn active" onclick="switchTab('fame', this)">Paket Fame</button>
+      <button class="tab-btn" onclick="switchTab('hemat', this)">Paket Hemat & Super</button>
+      <button class="tab-btn" onclick="switchTab('premium', this)">Paket Premium</button>
+    </div>
+
+    <!-- Paket Fame -->
+    <div id="tab-fame">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"><span class="kartu-badge">Populer</span></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Fame 1</div>
+              <div class="kartu-desc">Beef Belly 500gr, bumbu tare, selada, sambal bawang, condiment, mentega & sumpit.</div>
+              <div class="kartu-harga">Rp 200.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Fame 2</div>
+              <div class="kartu-desc">Sirloin 500gr, bumbu tare, selada, sambal bawang, condiment, mentega & sumpit.</div>
+              <div class="kartu-harga">Rp 195.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"><span class="kartu-badge">Mix</span></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Fame 3</div>
+              <div class="kartu-desc">Beef Belly 1 kg (bisa mix daging), bumbu tare 350ml, selada, sambal bawang, condiment & sumpit.</div>
+              <div class="kartu-harga">Rp 300.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Fame 4</div>
+              <div class="kartu-desc">Sirloin 1 kg, bumbu tare 350ml, selada, sambal bawang, condiment, mentega & sumpit.</div>
+              <div class="kartu-harga">Rp 295.000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paket Hemat & Super -->
+    <div id="tab-hemat" style="display:none;">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Hemat 1</div>
+              <div class="kartu-desc">Beef Belly 500gr, bumbu tare, sosis, bola udang, selada, sambal bawang, condiment & mentega.</div>
+              <div class="kartu-harga">Rp 255.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Hemat 2</div>
+              <div class="kartu-desc">Beef Belly 500gr, bumbu tare 350ml, sosis, ayam slice 250gr, bola udang, selada & condiment.</div>
+              <div class="kartu-harga">Rp 295.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"><span class="kartu-badge">Super</span></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Super 1</div>
+              <div class="kartu-desc">Sirloin 500gr, bumbu tare, sosis, bola udang, selada, sambal bawang, condiment & mentega.</div>
+              <div class="kartu-harga">Rp 250.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"><span class="kartu-badge">Super</span></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Super 2</div>
+              <div class="kartu-desc">Sirloin 500gr, bumbu tare 350ml, sosis, bola udang, ayam slice 250gr, selada & condiment.</div>
+              <div class="kartu-harga">Rp 290.000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paket Premium -->
+    <div id="tab-premium" style="display:none;">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"><span class="kartu-badge">Mix</span></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Premium 1</div>
+              <div class="kartu-desc">Beef Belly 1 kg (bisa mix), bumbu tare 2 botol, sosis, bola udang, ayam 500gr, selada & condiment.</div>
+              <div class="kartu-harga">Rp 395.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Super Premium</div>
+              <div class="kartu-desc">Sirloin 1 kg, bumbu tare 2 botol, sosis, bola udang, ayam 500gr, selada & condiment lengkap.</div>
+              <div class="kartu-harga">Rp 390.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Premium 2</div>
+              <div class="kartu-desc">Beef Belly 2 kg, bumbu tare 2 botol, sosis 2 pack, bola udang, ayam 500gr, selada 2 pack & condiment.</div>
+              <div class="kartu-harga">Rp 595.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="kartu">
+            <div class="kartu-img"><span class="kartu-badge">Family</span></div>
+            <div class="kartu-body">
+              <div class="kartu-title">Big Family</div>
+              <div class="kartu-desc">Beef Belly 1 kg + Sirloin 1 kg, bumbu tare 3 botol, sosis, bola udang, ayam 750gr, selada 2 pack.</div>
+              <div class="kartu-harga">Rp 650.000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center mt-3" style="color:var(--abu); font-size:0.82rem;">
+      <i class="bi bi-info-circle me-1"></i>Pembelian tanpa alat makan dikurangi Rp 10.000
+    </p>
+  </div>
+</section>
+
+
+<section id="testimoni">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="section-tag">Testimoni</p>
+      <h2 class="section-title mt-1">Kata Pelanggan Kami</h2>
+      <div class="garis mx-auto"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testi">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"BBQ-nya juara! Dagingnya empuk banget, bumbu meresap sempurna. Wajib coba!"</p>
+          <div class="testi-nama">Andi Saputra</div>
+          <div class="testi-role">Pelanggan Setia</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testi">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Pesan untuk acara keluarga, semua suka! Porsinya besar, rasanya konsisten enak dan worth it."</p>
+          <div class="testi-nama">Dewi Rahmasari</div>
+          <div class="testi-role">Customer via WhatsApp</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testi">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Brisket-nya beda banget dari tempat lain. Teksturnya tender dan rasanya dalam. The real deal!"</p>
+          <div class="testi-nama">Reza Firmansyah</div>
+          <div class="testi-role">Food Enthusiast</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="kontak">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <p class="section-tag">Kontak Kami</p>
+        <h2 class="section-title mt-1">Mari Terhubung<br/>Dengan Kami</h2>
+        <div class="garis"></div>
+        <p style="color:var(--abu); font-size:0.88rem; line-height:1.9; margin-bottom:24px;">
+          Ingin memesan atau bertanya? Kami siap melayani kamu setiap hari!
+        </p>
+        <div class="kontak-item">
+          <div class="kontak-icon"><i class="bi bi-geo-alt"></i></div>
+          <div><h6>Alamat</h6><p>Banjarbaru, Kalimantan Selatan</p></div>
+        </div>
+        <div class="kontak-item">
+          <div class="kontak-icon"><i class="bi bi-whatsapp"></i></div>
+          <div><h6>WhatsApp</h6><p>+62 811-5110-2888</p></div>
+        </div>
+        <div class="kontak-item">
+          <div class="kontak-icon"><i class="bi bi-instagram"></i></div>
+          <div><h6>Instagram</h6><p>@famebbq.id</p></div>
+        </div>
+        <div class="kontak-item">
+          <div class="kontak-icon"><i class="bi bi-clock"></i></div>
+          <div><h6>Jam Order</h6><p>Setiap Hari: 08.00 – 21.00 WITA</p></div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div style="background:#f9f9f9; border:1px solid #ddd; padding:32px;">
+          <h4 style="font-weight:bold; margin-bottom:6px;">Kirim Permintaan</h4>
+          <p style="color:var(--abu); font-size:0.85rem; margin-bottom:20px;">Isi formulir dan tim kami akan segera menghubungi kamu.</p>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Nama Lengkap</label>
+              <input type="text" class="form-control" id="iNama" placeholder="Nama kamu"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Nomor WhatsApp</label>
+              <input type="text" class="form-control" id="iWa" placeholder="+62 xxx-xxxx-xxxx"/>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Jenis Permintaan</label>
+              <select class="form-select" id="iJenis">
+                <option value="" disabled selected>Pilih jenis permintaan...</option>
+                <option>Informasi Paket</option>
+                <option>Pemesanan / Delivery</option>
+                <option>Kerjasama</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Pesan</label>
+              <textarea class="form-control" id="iPesan" rows="4" placeholder="Tuliskan permintaan kamu..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-merah w-100 py-2" onclick="kirim()">Kirim Permintaan</button>
+              <div id="notifSukses"><i class="bi bi-check-circle me-2"></i>Pesan berhasil dikirim! Kami akan segera menghubungi kamu. 🔥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="footer-brand mb-1">FameBBQ</div>
+        <p style="color:var(--abu); font-size:0.82rem; line-height:1.8; max-width:260px;">#BBQdirumahaja — menghadirkan cita rasa BBQ autentik langsung ke rumahmu sejak 2020.</p>
+        <div class="mt-3">
+          <a href="#" class="sosial"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="sosial"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="sosial"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="sosial"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="footer-heading">Navigasi</div>
+        <a href="#about" class="footer-link">Tentang Kami</a>
+        <a href="#menu" class="footer-link">Menu</a>
+        <a href="#testimoni" class="footer-link">Testimoni</a>
+        <a href="#kontak" class="footer-link">Kontak</a>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="footer-heading">Paket Populer</div>
+        <a href="#menu" class="footer-link">Paket Fame</a>
+        <a href="#menu" class="footer-link">Paket Hemat & Super</a>
+        <a href="#menu" class="footer-link">Paket Premium</a>
+        <a href="#menu" class="footer-link">Big Family</a>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-heading">Jam Buka</div>
+        <p style="color:var(--abu); font-size:0.85rem; line-height:1.9;">
+          Setiap Hari<br/>
+          <span style="color:var(--merah); font-weight:bold;">08.00 – 21.00 WITA</span>
+        </p>
+      </div>
+    </div>
+    <hr style="border-color:#ddd; margin:24px 0 16px;"/>
+    <div class="d-flex justify-content-between flex-wrap gap-2">
+      <span style="color:var(--abu); font-size:0.78rem;">© 2020–2026 Fame BBQ. All rights reserved.</span>
+      <span style="color:var(--abu); font-size:0.78rem;">Made with in Banjarmasin</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function switchTab(tab, btn) {
+    document.querySelectorAll('[id^="tab-"]').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).style.display = 'block';
+    btn.classList.add('active');
+  }
+
+  function kirim() {
+    var nama  = document.getElementById('Nama').value.trim();
+    var wa    = document.getElementById('Wa').value.trim();
+    var jenis = document.getElementById('Jenis').value;
+    var pesan = document.getElementById('Pesan').value.trim();
+    if (!nama || !wa || !jenis || !pesan) { alert('Harap isi semua field!'); return; }
+    document.getElementById('Nama').value = '';
+    document.getElementById('Wa').value = '';
+    document.getElementById('Jenis').value = '';
+    document.getElementById('Pesan').value = '';
+    var notif = document.getElementById('notifSukses');
+    notif.style.display = 'block';
+    setTimeout(() => notif.style.display = 'none', 5000);
+  }
+</script>
+
+</body>
+</html>
